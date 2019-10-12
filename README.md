@@ -1,3 +1,8 @@
+#Cron Monitor
+Use php artisan migrate for Database, add cron for this application, add both commands to cron monitor application to start, then start adding your own crons, Learning mode means the application will predict the length of time it expects a cron job to run. Once it has learnt sufficient information about the cron it will turn learning mode off for that job.
+
+Use /view for a live cron status on all the crons you've added in your account.
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
