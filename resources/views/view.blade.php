@@ -1,10 +1,11 @@
 <div class="crons">
     @foreach($crons as $cron)
-        <div class="cron @if($cron->did_fail) error @elseif($cron->start_time === NULL) notrun @else success @endif">
+        <div class="cron @if($cron->did_fail) error @elseif($cron->start_time === NULL) notrun @elseif($cron->end_time === NULL) running @else success @endif">
             <div class="cron_name">{{$cron->label}}</div>
             <div class="cron_time">{{$cron->next_expected_start}}</div>
             <div class="did_fail">@if($cron->did_fail) Error!
-                - {{$cron->error_message}} @elseif($cron->start_time === NULL) Not done first cycle yet @else
+                - {{$cron->error_message}} @elseif($cron->start_time === NULL) Not done first cycle
+                yet @elseif($cron->end_time === Null) Running @else
                     Successful @endif</div>
         </div>
     @endforeach
@@ -36,6 +37,11 @@
         color: #fff;
     }
 
+    .cron.running {
+        background: #3D68D4;
+        color: #fff;
+    }
+
     .cron.notrun {
         background: darkgrey;
         color: #fff;
@@ -50,12 +56,6 @@
     function sleep(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
-
-    /*
-    sleep(1000).then(() => {
-        //Do this
-    });
-     */
     sleep(30000).then(() => {
         location.reload();
     });
