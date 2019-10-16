@@ -56,7 +56,8 @@ class CronMonitor extends Command
                     $this->doFail("Cron " . $cron->label . " did not meet expected start time", $cron);
                 }
                 $allowance = $cron->expected_duration + $cron->allowance;
-                if (strtotime($cron->end_time) > strtotime($cron->start_time . ' +' . $allowance . ' minutes')) {
+                $allowance = strtotime($cron->start_time.' +'.$allowance. 'minutes');
+                if (strtotime($cron->end_time) == null && $allowance < strtotime("now")) {
                     $this->doFail($cron->label . " Potentially failed, took longer than expected duration", $cron);
                 }
             } else {
